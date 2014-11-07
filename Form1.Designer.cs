@@ -32,9 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonInvertSelection = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonDeselectAll = new System.Windows.Forms.Button();
+            this.buttonSelectAll = new System.Windows.Forms.Button();
             this.filelistView = new System.Windows.Forms.ListView();
             this.buttonOpenDir = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.DirectoryNameTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -42,9 +45,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonSelectAll = new System.Windows.Forms.Button();
-            this.buttonDeselectAll = new System.Windows.Forms.Button();
-            this.buttonInvertSelection = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,43 @@
             this.tabPage1.Text = "Источник данных";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // buttonInvertSelection
+            // 
+            this.buttonInvertSelection.ImageList = this.imageList1;
+            this.buttonInvertSelection.Location = new System.Drawing.Point(556, 96);
+            this.buttonInvertSelection.Name = "buttonInvertSelection";
+            this.buttonInvertSelection.Size = new System.Drawing.Size(23, 23);
+            this.buttonInvertSelection.TabIndex = 9;
+            this.buttonInvertSelection.UseVisualStyleBackColor = true;
+            this.buttonInvertSelection.Click += new System.EventHandler(this.buttonInvertSelection_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "open_dir.png");
+            this.imageList1.Images.SetKeyName(1, "Execute.png");
+            // 
+            // buttonDeselectAll
+            // 
+            this.buttonDeselectAll.ImageList = this.imageList1;
+            this.buttonDeselectAll.Location = new System.Drawing.Point(556, 67);
+            this.buttonDeselectAll.Name = "buttonDeselectAll";
+            this.buttonDeselectAll.Size = new System.Drawing.Size(23, 23);
+            this.buttonDeselectAll.TabIndex = 8;
+            this.buttonDeselectAll.UseVisualStyleBackColor = true;
+            this.buttonDeselectAll.Click += new System.EventHandler(this.buttonDeselectAll_Click);
+            // 
+            // buttonSelectAll
+            // 
+            this.buttonSelectAll.ImageList = this.imageList1;
+            this.buttonSelectAll.Location = new System.Drawing.Point(556, 38);
+            this.buttonSelectAll.Name = "buttonSelectAll";
+            this.buttonSelectAll.Size = new System.Drawing.Size(23, 23);
+            this.buttonSelectAll.TabIndex = 7;
+            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            this.buttonSelectAll.Click += new System.EventHandler(this.buttonSelectAll_Click);
+            // 
             // filelistView
             // 
             this.filelistView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -102,13 +139,6 @@
             this.buttonOpenDir.TabIndex = 5;
             this.buttonOpenDir.UseVisualStyleBackColor = true;
             this.buttonOpenDir.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "open_dir.png");
-            this.imageList1.Images.SetKeyName(1, "Execute.png");
             // 
             // label1
             // 
@@ -170,33 +200,6 @@
             this.buttonClose.Text = "Закрыть";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonSelectAll
-            // 
-            this.buttonSelectAll.ImageList = this.imageList1;
-            this.buttonSelectAll.Location = new System.Drawing.Point(556, 38);
-            this.buttonSelectAll.Name = "buttonSelectAll";
-            this.buttonSelectAll.Size = new System.Drawing.Size(23, 23);
-            this.buttonSelectAll.TabIndex = 7;
-            this.buttonSelectAll.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeselectAll
-            // 
-            this.buttonDeselectAll.ImageList = this.imageList1;
-            this.buttonDeselectAll.Location = new System.Drawing.Point(556, 67);
-            this.buttonDeselectAll.Name = "buttonDeselectAll";
-            this.buttonDeselectAll.Size = new System.Drawing.Size(23, 23);
-            this.buttonDeselectAll.TabIndex = 8;
-            this.buttonDeselectAll.UseVisualStyleBackColor = true;
-            // 
-            // buttonInvertSelection
-            // 
-            this.buttonInvertSelection.ImageList = this.imageList1;
-            this.buttonInvertSelection.Location = new System.Drawing.Point(556, 96);
-            this.buttonInvertSelection.Name = "buttonInvertSelection";
-            this.buttonInvertSelection.Size = new System.Drawing.Size(23, 23);
-            this.buttonInvertSelection.TabIndex = 9;
-            this.buttonInvertSelection.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
