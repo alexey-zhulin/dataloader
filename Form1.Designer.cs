@@ -45,8 +45,20 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxServer = new System.Windows.Forms.TextBox();
+            this.textBoxBase = new System.Windows.Forms.TextBox();
+            this.textBoxUser = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.tabletextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonConnect = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -59,11 +71,13 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(593, 306);
+            this.tabControl1.Size = new System.Drawing.Size(593, 349);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.tabletextBox);
             this.tabPage1.Controls.Add(this.buttonInvertSelection);
             this.tabPage1.Controls.Add(this.buttonDeselectAll);
             this.tabPage1.Controls.Add(this.buttonSelectAll);
@@ -74,15 +88,16 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(585, 280);
+            this.tabPage1.Size = new System.Drawing.Size(585, 323);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Источник данных";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // buttonInvertSelection
             // 
+            this.buttonInvertSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInvertSelection.ImageList = this.imageList1;
-            this.buttonInvertSelection.Location = new System.Drawing.Point(556, 96);
+            this.buttonInvertSelection.Location = new System.Drawing.Point(556, 121);
             this.buttonInvertSelection.Name = "buttonInvertSelection";
             this.buttonInvertSelection.Size = new System.Drawing.Size(23, 23);
             this.buttonInvertSelection.TabIndex = 9;
@@ -98,8 +113,9 @@
             // 
             // buttonDeselectAll
             // 
+            this.buttonDeselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeselectAll.ImageList = this.imageList1;
-            this.buttonDeselectAll.Location = new System.Drawing.Point(556, 67);
+            this.buttonDeselectAll.Location = new System.Drawing.Point(556, 92);
             this.buttonDeselectAll.Name = "buttonDeselectAll";
             this.buttonDeselectAll.Size = new System.Drawing.Size(23, 23);
             this.buttonDeselectAll.TabIndex = 8;
@@ -108,8 +124,9 @@
             // 
             // buttonSelectAll
             // 
+            this.buttonSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSelectAll.ImageList = this.imageList1;
-            this.buttonSelectAll.Location = new System.Drawing.Point(556, 38);
+            this.buttonSelectAll.Location = new System.Drawing.Point(556, 63);
             this.buttonSelectAll.Name = "buttonSelectAll";
             this.buttonSelectAll.Size = new System.Drawing.Size(23, 23);
             this.buttonSelectAll.TabIndex = 7;
@@ -122,15 +139,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filelistView.CheckBoxes = true;
-            this.filelistView.Location = new System.Drawing.Point(9, 37);
+            this.filelistView.Location = new System.Drawing.Point(9, 63);
             this.filelistView.Name = "filelistView";
-            this.filelistView.Size = new System.Drawing.Size(541, 235);
+            this.filelistView.Size = new System.Drawing.Size(541, 252);
             this.filelistView.TabIndex = 6;
             this.filelistView.UseCompatibleStateImageBehavior = false;
             this.filelistView.View = System.Windows.Forms.View.List;
             // 
             // buttonOpenDir
             // 
+            this.buttonOpenDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOpenDir.ImageIndex = 0;
             this.buttonOpenDir.ImageList = this.imageList1;
             this.buttonOpenDir.Location = new System.Drawing.Point(556, 9);
@@ -153,24 +171,34 @@
             // 
             this.DirectoryNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DirectoryNameTextBox.Location = new System.Drawing.Point(118, 11);
+            this.DirectoryNameTextBox.Enabled = false;
+            this.DirectoryNameTextBox.Location = new System.Drawing.Point(131, 11);
             this.DirectoryNameTextBox.Name = "DirectoryNameTextBox";
-            this.DirectoryNameTextBox.Size = new System.Drawing.Size(432, 20);
+            this.DirectoryNameTextBox.Size = new System.Drawing.Size(419, 20);
             this.DirectoryNameTextBox.TabIndex = 3;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonConnect);
+            this.tabPage2.Controls.Add(this.textBoxPassword);
+            this.tabPage2.Controls.Add(this.textBoxUser);
+            this.tabPage2.Controls.Add(this.textBoxBase);
+            this.tabPage2.Controls.Add(this.textBoxServer);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(585, 280);
+            this.tabPage2.Size = new System.Drawing.Size(585, 323);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Параметры подключения";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 354);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 397);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(617, 22);
             this.statusStrip1.TabIndex = 1;
@@ -182,7 +210,7 @@
             this.buttonExecute.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.buttonExecute.ImageIndex = 1;
             this.buttonExecute.ImageList = this.imageList1;
-            this.buttonExecute.Location = new System.Drawing.Point(12, 324);
+            this.buttonExecute.Location = new System.Drawing.Point(12, 367);
             this.buttonExecute.Name = "buttonExecute";
             this.buttonExecute.Size = new System.Drawing.Size(83, 23);
             this.buttonExecute.TabIndex = 2;
@@ -193,7 +221,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonClose.Location = new System.Drawing.Point(101, 324);
+            this.buttonClose.Location = new System.Drawing.Point(101, 367);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(83, 23);
             this.buttonClose.TabIndex = 3;
@@ -201,11 +229,111 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Сервер";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "База данных";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Пользователь";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Пароль";
+            // 
+            // textBoxServer
+            // 
+            this.textBoxServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxServer.Location = new System.Drawing.Point(96, 9);
+            this.textBoxServer.Name = "textBoxServer";
+            this.textBoxServer.Size = new System.Drawing.Size(483, 20);
+            this.textBoxServer.TabIndex = 4;
+            // 
+            // textBoxBase
+            // 
+            this.textBoxBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBase.Location = new System.Drawing.Point(96, 32);
+            this.textBoxBase.Name = "textBoxBase";
+            this.textBoxBase.Size = new System.Drawing.Size(483, 20);
+            this.textBoxBase.TabIndex = 5;
+            // 
+            // textBoxUser
+            // 
+            this.textBoxUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUser.Location = new System.Drawing.Point(96, 56);
+            this.textBoxUser.Name = "textBoxUser";
+            this.textBoxUser.Size = new System.Drawing.Size(483, 20);
+            this.textBoxUser.TabIndex = 6;
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPassword.Location = new System.Drawing.Point(96, 80);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(483, 20);
+            this.textBoxPassword.TabIndex = 7;
+            // 
+            // tabletextBox
+            // 
+            this.tabletextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabletextBox.Location = new System.Drawing.Point(131, 37);
+            this.tabletextBox.Name = "tabletextBox";
+            this.tabletextBox.Size = new System.Drawing.Size(419, 20);
+            this.tabletextBox.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Таблица для загрузки";
+            // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(96, 106);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(79, 23);
+            this.buttonConnect.TabIndex = 8;
+            this.buttonConnect.Text = "Подключить";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 376);
+            this.ClientSize = new System.Drawing.Size(617, 419);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.buttonExecute);
             this.Controls.Add(this.statusStrip1);
@@ -216,6 +344,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,6 +368,17 @@
         private System.Windows.Forms.Button buttonInvertSelection;
         private System.Windows.Forms.Button buttonDeselectAll;
         private System.Windows.Forms.Button buttonSelectAll;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.TextBox textBoxUser;
+        private System.Windows.Forms.TextBox textBoxBase;
+        private System.Windows.Forms.TextBox textBoxServer;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tabletextBox;
+        private System.Windows.Forms.Button buttonConnect;
 
     }
 }
