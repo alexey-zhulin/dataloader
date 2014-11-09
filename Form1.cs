@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Microsoft.Win32;
+using System.Configuration;
 
 namespace BIR_Analitic_Loader
 {
@@ -43,13 +43,13 @@ namespace BIR_Analitic_Loader
         
         private void button1_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = Registry.CurrentUser.GetValue("DefaultPath", "") as string;
+            folderBrowserDialog1.SelectedPath = (string)Properties.Settings.Default["SelectedPath"] ?? "";
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
                 DirectoryNameTextBox.Text = folderBrowserDialog1.SelectedPath;
                 fillFileList(folderBrowserDialog1.SelectedPath);
-                Registry.CurrentUser.SetValue("DefaultPath", folderBrowserDialog1.SelectedPath);
+                Properties.Settings.Default["SelectedPath"] = folderBrowserDialog1.SelectedPath;
             }
         }
 
@@ -90,6 +90,44 @@ namespace BIR_Analitic_Loader
         private void buttonInvertSelection_Click(object sender, EventArgs e)
         {
             checkOperation(selectTypes.InvertSelection);
+        }
+
+        private void checkBoxDomainAuth_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxUser.Enabled = !checkBoxDomainAuth.Checked;
+            textBoxPassword.Enabled = !checkBoxDomainAuth.Checked;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        private void buttonConnect_Click(object sender, EventArgs e)
+        {
+            DBHandler dbhandler = new DBHandler();
+            dbhandler.ServerName = textBoxServer.Text;
+            dbhandler.Database = textBoxBase.Text;
+            dbhandler.UserName = textBoxUser.Text;
+            dbhandler.Pwd = textBoxPassword.Text;
+            dbhandler.DomainAuth = checkBoxDomainAuth.Checked;
+            if (dbhandler.Connect())
+            {
+                Properties.Settings.Default["ServerName"] = textBoxServer.Text;
+                Properties.Settings.Default["Database"] = textBoxBase.Text;
+                Properties.Settings.Default["UserName"] = textBoxUser.Text;
+                Properties.Settings.Default["Pwd"] = textBoxPassword.Text;
+                Properties.Settings.Default["DomainAuth"] = checkBoxDomainAuth.Checked;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBoxServer.Text = (string)Properties.Settings.Default["ServerName"];
+            textBoxBase.Text = (string)Properties.Settings.Default["Database"];
+            textBoxUser.Text = (string)Properties.Settings.Default["UserName"];
+            textBoxPassword.Text = (string)Properties.Settings.Default["Pwd"];
+            checkBoxDomainAuth.Checked = (bool)Properties.Settings.Default["DomainAuth"];
         }
     }
 }

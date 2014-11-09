@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabletextBox = new System.Windows.Forms.TextBox();
             this.buttonInvertSelection = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.buttonDeselectAll = new System.Windows.Forms.Button();
@@ -41,21 +43,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DirectoryNameTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonConnect = new System.Windows.Forms.Button();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxUser = new System.Windows.Forms.TextBox();
+            this.textBoxBase = new System.Windows.Forms.TextBox();
+            this.textBoxServer = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxServer = new System.Windows.Forms.TextBox();
-            this.textBoxBase = new System.Windows.Forms.TextBox();
-            this.textBoxUser = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.tabletextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonConnect = new System.Windows.Forms.Button();
+            this.checkBoxDomainAuth = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,6 +93,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Источник данных";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Таблица для загрузки";
+            // 
+            // tabletextBox
+            // 
+            this.tabletextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabletextBox.Location = new System.Drawing.Point(131, 37);
+            this.tabletextBox.Name = "tabletextBox";
+            this.tabletextBox.Size = new System.Drawing.Size(419, 20);
+            this.tabletextBox.TabIndex = 10;
             // 
             // buttonInvertSelection
             // 
@@ -179,6 +198,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBoxDomainAuth);
             this.tabPage2.Controls.Add(this.buttonConnect);
             this.tabPage2.Controls.Add(this.textBoxPassword);
             this.tabPage2.Controls.Add(this.textBoxUser);
@@ -195,6 +215,89 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Параметры подключения";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(96, 106);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(79, 23);
+            this.buttonConnect.TabIndex = 8;
+            this.buttonConnect.Text = "Подключить";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPassword.Location = new System.Drawing.Point(96, 80);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(307, 20);
+            this.textBoxPassword.TabIndex = 7;
+            // 
+            // textBoxUser
+            // 
+            this.textBoxUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxUser.Location = new System.Drawing.Point(96, 56);
+            this.textBoxUser.Name = "textBoxUser";
+            this.textBoxUser.Size = new System.Drawing.Size(307, 20);
+            this.textBoxUser.TabIndex = 6;
+            // 
+            // textBoxBase
+            // 
+            this.textBoxBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBase.Location = new System.Drawing.Point(96, 32);
+            this.textBoxBase.Name = "textBoxBase";
+            this.textBoxBase.Size = new System.Drawing.Size(483, 20);
+            this.textBoxBase.TabIndex = 5;
+            // 
+            // textBoxServer
+            // 
+            this.textBoxServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxServer.Location = new System.Drawing.Point(96, 9);
+            this.textBoxServer.Name = "textBoxServer";
+            this.textBoxServer.Size = new System.Drawing.Size(483, 20);
+            this.textBoxServer.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Пароль";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Пользователь";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "База данных";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Сервер";
             // 
             // statusStrip1
             // 
@@ -229,105 +332,16 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // label2
+            // checkBoxDomainAuth
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Сервер";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "База данных";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Пользователь";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Пароль";
-            // 
-            // textBoxServer
-            // 
-            this.textBoxServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxServer.Location = new System.Drawing.Point(96, 9);
-            this.textBoxServer.Name = "textBoxServer";
-            this.textBoxServer.Size = new System.Drawing.Size(483, 20);
-            this.textBoxServer.TabIndex = 4;
-            // 
-            // textBoxBase
-            // 
-            this.textBoxBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBase.Location = new System.Drawing.Point(96, 32);
-            this.textBoxBase.Name = "textBoxBase";
-            this.textBoxBase.Size = new System.Drawing.Size(483, 20);
-            this.textBoxBase.TabIndex = 5;
-            // 
-            // textBoxUser
-            // 
-            this.textBoxUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUser.Location = new System.Drawing.Point(96, 56);
-            this.textBoxUser.Name = "textBoxUser";
-            this.textBoxUser.Size = new System.Drawing.Size(483, 20);
-            this.textBoxUser.TabIndex = 6;
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(96, 80);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(483, 20);
-            this.textBoxPassword.TabIndex = 7;
-            // 
-            // tabletextBox
-            // 
-            this.tabletextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabletextBox.Location = new System.Drawing.Point(131, 37);
-            this.tabletextBox.Name = "tabletextBox";
-            this.tabletextBox.Size = new System.Drawing.Size(419, 20);
-            this.tabletextBox.TabIndex = 10;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 40);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Таблица для загрузки";
-            // 
-            // buttonConnect
-            // 
-            this.buttonConnect.Location = new System.Drawing.Point(96, 106);
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.Size = new System.Drawing.Size(79, 23);
-            this.buttonConnect.TabIndex = 8;
-            this.buttonConnect.Text = "Подключить";
-            this.buttonConnect.UseVisualStyleBackColor = true;
+            this.checkBoxDomainAuth.AutoSize = true;
+            this.checkBoxDomainAuth.Location = new System.Drawing.Point(414, 58);
+            this.checkBoxDomainAuth.Name = "checkBoxDomainAuth";
+            this.checkBoxDomainAuth.Size = new System.Drawing.Size(147, 17);
+            this.checkBoxDomainAuth.TabIndex = 9;
+            this.checkBoxDomainAuth.Text = "Доменная авторизация";
+            this.checkBoxDomainAuth.UseVisualStyleBackColor = true;
+            this.checkBoxDomainAuth.CheckedChanged += new System.EventHandler(this.checkBoxDomainAuth_CheckedChanged);
             // 
             // Form1
             // 
@@ -341,6 +355,8 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Загрузчик данных";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -379,6 +395,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tabletextBox;
         private System.Windows.Forms.Button buttonConnect;
+        private System.Windows.Forms.CheckBox checkBoxDomainAuth;
 
     }
 }
