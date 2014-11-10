@@ -28,6 +28,10 @@ namespace DataLoader
 
         private void fillFileList(string SelectedPath)
         {
+            if (!Directory.Exists(SelectedPath))
+            {
+                return;
+            }
             filelistView.Items.Clear();
             string[] files = Directory.GetFiles(SelectedPath);
             foreach (string file in files)
@@ -117,6 +121,9 @@ namespace DataLoader
             dbhandler.UserName = textBoxUser.Text;
             dbhandler.Pwd = textBoxPassword.Text;
             dbhandler.DomainAuth = checkBoxDomainAuth.Checked;
+            toolStripStatusLabel1.Text = "Подключение...";
+            Application.DoEvents();
+            Cursor.Current = Cursors.WaitCursor;
             if (dbhandler.Connect())
             {
                 Properties.Settings.Default["ServerName"] = textBoxServer.Text;
@@ -131,6 +138,8 @@ namespace DataLoader
             {
                 MessageBox.Show(dbhandler.ConnectException.Message, "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            toolStripStatusLabel1.Text = "Выполните подключение";
+            Cursor.Current = Cursors.Default;
         }
 
         string GetTableName()
