@@ -1,4 +1,4 @@
-﻿namespace BIR_Analitic_Loader
+﻿namespace DataLoader
 {
     partial class Form1
     {
@@ -338,6 +338,7 @@
             this.buttonExecute.Text = "Выполнить";
             this.buttonExecute.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonExecute.UseVisualStyleBackColor = true;
+            this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
             // 
             // buttonClose
             // 

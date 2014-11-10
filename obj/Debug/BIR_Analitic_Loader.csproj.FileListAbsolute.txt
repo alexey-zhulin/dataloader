@@ -21,7 +21,6 @@ E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.exe
 E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.pdb
 E:\Projects\dataloader.git\trunk\bin\Debug\BIR_Analitic_Loader.exe
 E:\Projects\dataloader.git\trunk\bin\Debug\BIR_Analitic_Loader.pdb
-E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.csprojResolveAssemblyReference.cache
-E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.Form1.resources
-E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.Properties.Resources.resources
 E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.csproj.GenerateResource.Cache
+E:\Projects\dataloader.git\trunk\obj\Debug\DataLoader.Form1.resources
+E:\Projects\dataloader.git\trunk\obj\Debug\DataLoader.Properties.Resources.resources

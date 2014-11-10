@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
 
-namespace BIR_Analitic_Loader
+namespace DataLoader
 {
     enum selectTypes
     {
@@ -19,6 +19,8 @@ namespace BIR_Analitic_Loader
     
     public partial class Form1 : Form
     {
+        DBHandler dbhandler = new DBHandler();
+
         public Form1()
         {
             InitializeComponent();
@@ -105,7 +107,7 @@ namespace BIR_Analitic_Loader
 
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            DBHandler dbhandler = new DBHandler();
+            buttonExecute.Enabled = false;
             dbhandler.ServerName = textBoxServer.Text;
             dbhandler.Database = textBoxBase.Text;
             dbhandler.UserName = textBoxUser.Text;
@@ -118,6 +120,11 @@ namespace BIR_Analitic_Loader
                 Properties.Settings.Default["UserName"] = textBoxUser.Text;
                 Properties.Settings.Default["Pwd"] = textBoxPassword.Text;
                 Properties.Settings.Default["DomainAuth"] = checkBoxDomainAuth.Checked;
+                buttonExecute.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show(dbhandler.ConnectException.Message, "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -130,6 +137,15 @@ namespace BIR_Analitic_Loader
             checkBoxDomainAuth.Checked = (bool)Properties.Settings.Default["DomainAuth"];
             DirectoryNameTextBox.Text = (string)Properties.Settings.Default["SelectedPath"];
             fillFileList(DirectoryNameTextBox.Text);
+            buttonExecute.Enabled = false;
+        }
+
+        private void buttonExecute_Click(object sender, EventArgs e)
+        {
+            if (dbhandler.connectionState != ConnectionState.Open)
+            {
+                MessageBox.Show("Текущее состояние подключения не является открытым. Попробуйте снова выполнить подключение.", "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

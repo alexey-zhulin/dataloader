@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BIR_Analitic_Loader
+namespace DataLoader
 {
     static class Program
     {
