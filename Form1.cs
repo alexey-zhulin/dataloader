@@ -125,6 +125,7 @@ namespace DataLoader
                 Properties.Settings.Default["Pwd"] = textBoxPassword.Text;
                 Properties.Settings.Default["DomainAuth"] = checkBoxDomainAuth.Checked;
                 buttonExecute.Enabled = true;
+                toolStripStatusLabel1.Text = "Выполните отметку файлов и нажмите кнопку [Загрузить]";
             }
             else
             {
@@ -161,6 +162,7 @@ namespace DataLoader
             fillFileList(DirectoryNameTextBox.Text);
             tabletextBox.Text = GetTableName();
             buttonExecute.Enabled = false;
+            toolStripStatusLabel1.Text = "Выполните подключение";
         }
 
         private void buttonExecute_Click(object sender, EventArgs e)
@@ -170,10 +172,23 @@ namespace DataLoader
                 MessageBox.Show("Текущее состояние подключения не является открытым. Попробуйте снова выполнить подключение.", "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            dbhandler.TableName = tabletextBox.Text;
+            toolStripStatusLabel1.Visible = false;
+            toolStripProgressBar1.Visible = true;
             try
             {
-                dbhandler.LoadData();
+                dbhandler.TableName = tabletextBox.Text;
+                dbhandler.CreateTable();
+                ExcelHandler excelHandler = new ExcelHandler();
+                for (int i = 0; i < filelistView.Items.Count; i++)
+                {
+                    if (!filelistView.Items[i].Checked)
+                    {
+                        continue;
+                    }
+                    excelHandler.FileName = (string)filelistView.Items[i].Tag;
+                    excelHandler.dbhandler = dbhandler;
+                    excelHandler.LoadData();
+                }
             }
             catch (Exception le)
             {
@@ -181,6 +196,9 @@ namespace DataLoader
                 return;
             }
             MessageBox.Show("Загрузка завершена." + Environment.NewLine + "Лог загрузки находится в папке с данными.", "Результат загрузки", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            toolStripProgressBar1.Visible = false;
+            toolStripStatusLabel1.Visible = true;
+            toolStripStatusLabel1.Text = "Готово";
         }
     }
 }

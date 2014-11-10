@@ -8,18 +8,21 @@ using System.Data;
 
 namespace DataLoader
 {
-    class DBHandler
+    class DBHandler : IDisposable
     {
         SqlConnection connection;
         Exception connectException;
+        bool tableWasCreated;
         public string ServerName;
         public string Database;
         public string UserName;
         public string Pwd;
         public bool DomainAuth;
         public string TableName;
+        public string Schema = "dbo";
         public Exception ConnectException { get { return connectException; } }
         public ConnectionState connectionState { get { return connection.State; } }
+        public bool TableWasCreated { get { return tableWasCreated; } }
 
         public DBHandler()
         {
@@ -54,9 +57,44 @@ namespace DataLoader
             return true;
         }
 
-        public void LoadData()
+        public void CreateTable()
         {
+            string queryText = "Select * From INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = @Schema And  TABLE_NAME = @TableName";
+            SqlCommand dbCommand = new SqlCommand(queryText, connection);
+            dbCommand.Parameters.Add("Schema", SqlDbType.VarChar).Value = Schema;
+            dbCommand.Parameters.Add("TableName", SqlDbType.VarChar).Value = TableName;
+            SqlDataReader cursor = dbCommand.ExecuteReader();
+            tableWasCreated = false;
+            if (!cursor.Read())
+            {
+                tableWasCreated = true;
+            }
+            cursor.Close();
+            cursor.Dispose();
+            if (tableWasCreated)
+            {
+                queryText = "create table [" + Schema + "].[" + TableName + "] (" +
+                            "ParamId              integer              identity," +
+                            "Param                nvarchar(Max)        null," +
+                            "ParamCode            nvarchar(100)        null," +
+                            "ParamCode2           nvarchar(100)        null," +
+                            "SubjectId            integer              null," +
+                            "FDate                date	                null," +
+                            "CL                   integer              null," +
+                            "VerId                integer              null," +
+                            "AValue1              numeric(18,2)        null," +
+                            "AValue2              numeric(18,2)        null," +
+                            "AValue3              numeric(18,2)        null," +
+                            "constraint PK_" + TableName + " primary key (ParamId)" +
+                            ")";
+                dbCommand = new SqlCommand(queryText, connection);
+                dbCommand.ExecuteNonQuery();
+            }
+        }
 
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
