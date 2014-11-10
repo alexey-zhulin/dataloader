@@ -8,6 +8,19 @@ using System.Data;
 
 namespace DataLoader
 {
+    class DBRecord
+    {
+        public string Param;
+        public string ParamCode;
+        public string ParamCode2;
+        public int SubjectId;
+        public DateTime FDate;
+        public int CL;
+        public double AValue1;
+        public double AValue2;
+        public double AValue3;
+    }
+    
     class DBHandler : IDisposable
     {
         SqlConnection connection;
@@ -89,6 +102,37 @@ namespace DataLoader
                             ")";
                 dbCommand = new SqlCommand(queryText, connection);
                 dbCommand.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertRecord(DBRecord record)
+        {
+            string queryText = "insert into [" + Schema + "].[" + TableName + "]" + Environment.NewLine +
+                                "(Param, ParamCode, ParamCode2, SubjectId, FDate, CL, AValue1, AValue2, AValue3)" + Environment.NewLine + 
+                                "values" + Environment.NewLine +
+                                "(@Param, @ParamCode, @ParamCode2, @SubjectId, @FDate, @CL, @AValue1, @AValue2, @AValue3)";
+            SqlCommand dbCommand = new SqlCommand(queryText, connection);
+            dbCommand.Parameters.Add("Param", SqlDbType.VarChar).Value = record.Param;
+            dbCommand.Parameters.Add("ParamCode", SqlDbType.VarChar).Value = record.ParamCode;
+            dbCommand.Parameters.Add("ParamCode2", SqlDbType.VarChar).Value = record.ParamCode2;
+            dbCommand.Parameters.Add("SubjectId", SqlDbType.Int).Value = record.SubjectId;
+            dbCommand.Parameters.Add("FDate", SqlDbType.DateTime).Value = record.FDate;
+            dbCommand.Parameters.Add("CL", SqlDbType.Int).Value = record.CL;
+            dbCommand.Parameters.Add("AValue1", SqlDbType.Float).Value = record.AValue1;
+            dbCommand.Parameters.Add("AValue2", SqlDbType.Float).Value = record.AValue2;
+            dbCommand.Parameters.Add("AValue3", SqlDbType.Float).Value = record.AValue3;
+            using (SqlTransaction dbTrans = connection.BeginTransaction())
+            {
+                try
+                {
+                    dbCommand.ExecuteNonQuery();
+                    dbTrans.Commit();
+                }
+                catch (SqlException)
+                {
+                    dbTrans.Rollback();
+                    throw;
+                }
             }
         }
 
