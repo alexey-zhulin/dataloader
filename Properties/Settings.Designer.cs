@@ -94,5 +94,17 @@ namespace DataLoader.Properties {
                 this["DomainAuth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TMP_valBalances_")]
+        public string BaseTableName {
+            get {
+                return ((string)(this["BaseTableName"]));
+            }
+            set {
+                this["BaseTableName"] = value;
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace DataLoader
         public string UserName;
         public string Pwd;
         public bool DomainAuth;
+        public string TableName;
         public Exception ConnectException { get { return connectException; } }
         public ConnectionState connectionState { get { return connection.State; } }
 
@@ -40,20 +41,22 @@ namespace DataLoader
         public bool Connect()
         {
             string connectionString = GetConnectionString();
-            using (connection)
+            connection.ConnectionString = connectionString;
+            try
             {
-                connection.ConnectionString = connectionString;
-                try
-                {
-                    connection.Open();
-                }
-                catch (Exception e)
-                {
-                    connectException = e;
-                    return false;
-                }
+                connection.Open();
+            }
+            catch (Exception e)
+            {
+                connectException = e;
+                return false;
             }
             return true;
+        }
+
+        public void LoadData()
+        {
+
         }
     }
 }

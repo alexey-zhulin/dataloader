@@ -37,6 +37,10 @@ namespace DataLoader
                 {
                     continue;
                 }
+                if (Path.GetExtension(file) != ".xls" & Path.GetExtension(file) != ".xlsx")
+                {
+                    continue;
+                }
                 ListViewItem item = new ListViewItem(fileName);
                 item.Tag = file;
                 filelistView.Items.Add(item);
@@ -128,6 +132,24 @@ namespace DataLoader
             }
         }
 
+        string GetTableName()
+        {
+            string tableName = Properties.Settings.Default.BaseTableName;
+            string tableYearSuffix = DateTime.Now.Year.ToString();
+            string tableMonthSuffix = DateTime.Now.Month.ToString();
+            if (tableMonthSuffix.Length < 2)
+            {
+                tableMonthSuffix = "0" + tableMonthSuffix;
+            }
+            string tableDaySuffix = DateTime.Now.Day.ToString();
+            if (tableDaySuffix.Length < 2)
+            {
+                tableDaySuffix = "0" + tableDaySuffix;
+            }
+            tableName = tableName + tableYearSuffix + tableMonthSuffix + tableDaySuffix;
+            return tableName;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             textBoxServer.Text = (string)Properties.Settings.Default["ServerName"];
@@ -137,6 +159,7 @@ namespace DataLoader
             checkBoxDomainAuth.Checked = (bool)Properties.Settings.Default["DomainAuth"];
             DirectoryNameTextBox.Text = (string)Properties.Settings.Default["SelectedPath"];
             fillFileList(DirectoryNameTextBox.Text);
+            tabletextBox.Text = GetTableName();
             buttonExecute.Enabled = false;
         }
 
@@ -145,7 +168,19 @@ namespace DataLoader
             if (dbhandler.connectionState != ConnectionState.Open)
             {
                 MessageBox.Show("Текущее состояние подключения не является открытым. Попробуйте снова выполнить подключение.", "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            dbhandler.TableName = tabletextBox.Text;
+            try
+            {
+                dbhandler.LoadData();
+            }
+            catch (Exception le)
+            {
+                MessageBox.Show(le.Message, "Ошибка загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Загрузка завершена." + Environment.NewLine + "Лог загрузки находится в папке с данными.", "Результат загрузки", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
