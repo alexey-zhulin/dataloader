@@ -128,6 +128,8 @@ namespace BIR_Analitic_Loader
             textBoxUser.Text = (string)Properties.Settings.Default["UserName"];
             textBoxPassword.Text = (string)Properties.Settings.Default["Pwd"];
             checkBoxDomainAuth.Checked = (bool)Properties.Settings.Default["DomainAuth"];
+            DirectoryNameTextBox.Text = (string)Properties.Settings.Default["SelectedPath"];
+            fillFileList(DirectoryNameTextBox.Text);
         }
     }
 }

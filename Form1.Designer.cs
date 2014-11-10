@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DirectoryNameTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBoxDomainAuth = new System.Windows.Forms.CheckBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxUser = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.checkBoxDomainAuth = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -115,6 +115,7 @@
             // buttonInvertSelection
             // 
             this.buttonInvertSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonInvertSelection.ImageIndex = 4;
             this.buttonInvertSelection.ImageList = this.imageList1;
             this.buttonInvertSelection.Location = new System.Drawing.Point(556, 121);
             this.buttonInvertSelection.Name = "buttonInvertSelection";
@@ -126,13 +127,17 @@
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
             this.imageList1.Images.SetKeyName(0, "open_dir.png");
-            this.imageList1.Images.SetKeyName(1, "Execute.png");
+            this.imageList1.Images.SetKeyName(1, "upload.png");
+            this.imageList1.Images.SetKeyName(2, "select_all.png");
+            this.imageList1.Images.SetKeyName(3, "deselect_all.png");
+            this.imageList1.Images.SetKeyName(4, "invert_selection.png");
             // 
             // buttonDeselectAll
             // 
             this.buttonDeselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeselectAll.ImageIndex = 3;
             this.buttonDeselectAll.ImageList = this.imageList1;
             this.buttonDeselectAll.Location = new System.Drawing.Point(556, 92);
             this.buttonDeselectAll.Name = "buttonDeselectAll";
@@ -144,12 +149,14 @@
             // buttonSelectAll
             // 
             this.buttonSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSelectAll.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSelectAll.ImageIndex = 2;
             this.buttonSelectAll.ImageList = this.imageList1;
             this.buttonSelectAll.Location = new System.Drawing.Point(556, 63);
             this.buttonSelectAll.Name = "buttonSelectAll";
             this.buttonSelectAll.Size = new System.Drawing.Size(23, 23);
             this.buttonSelectAll.TabIndex = 7;
-            this.buttonSelectAll.UseVisualStyleBackColor = true;
+            this.buttonSelectAll.UseVisualStyleBackColor = false;
             this.buttonSelectAll.Click += new System.EventHandler(this.buttonSelectAll_Click);
             // 
             // filelistView
@@ -215,6 +222,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Параметры подключения";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDomainAuth
+            // 
+            this.checkBoxDomainAuth.AutoSize = true;
+            this.checkBoxDomainAuth.Location = new System.Drawing.Point(414, 58);
+            this.checkBoxDomainAuth.Name = "checkBoxDomainAuth";
+            this.checkBoxDomainAuth.Size = new System.Drawing.Size(147, 17);
+            this.checkBoxDomainAuth.TabIndex = 9;
+            this.checkBoxDomainAuth.Text = "Доменная авторизация";
+            this.checkBoxDomainAuth.UseVisualStyleBackColor = true;
+            this.checkBoxDomainAuth.CheckedChanged += new System.EventHandler(this.checkBoxDomainAuth_CheckedChanged);
             // 
             // buttonConnect
             // 
@@ -331,17 +349,6 @@
             this.buttonClose.Text = "Закрыть";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // checkBoxDomainAuth
-            // 
-            this.checkBoxDomainAuth.AutoSize = true;
-            this.checkBoxDomainAuth.Location = new System.Drawing.Point(414, 58);
-            this.checkBoxDomainAuth.Name = "checkBoxDomainAuth";
-            this.checkBoxDomainAuth.Size = new System.Drawing.Size(147, 17);
-            this.checkBoxDomainAuth.TabIndex = 9;
-            this.checkBoxDomainAuth.Text = "Доменная авторизация";
-            this.checkBoxDomainAuth.UseVisualStyleBackColor = true;
-            this.checkBoxDomainAuth.CheckedChanged += new System.EventHandler(this.checkBoxDomainAuth_CheckedChanged);
             // 
             // Form1
             // 
