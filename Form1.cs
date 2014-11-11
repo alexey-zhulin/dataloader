@@ -136,9 +136,9 @@ namespace DataLoader
             }
             else
             {
+                toolStripStatusLabel1.Text = "Выполните подключение";
                 MessageBox.Show(dbhandler.ConnectException.Message, "Ошибка подключения", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            toolStripStatusLabel1.Text = "Выполните подключение";
             Cursor.Current = Cursors.Default;
         }
 
