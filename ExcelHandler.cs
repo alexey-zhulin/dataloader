@@ -47,10 +47,12 @@ namespace DataLoader
         
         public void LoadData()
         {
+            LogHandler logHandler = new LogHandler(Path.GetDirectoryName(FileName) + "\\logfile.log");
             string OKATO = GetOKATOFromFileName();
             int SubjectId;
             if (!int.TryParse(OKATO, out SubjectId))
             {
+                logHandler.WriteLogStr("Ошибка определения ОКАТО из имени файла (" + FileName  + ")");
                 return;
             }
             int CL;

@@ -182,9 +182,10 @@ namespace DataLoader
                 return;
             }
             toolStripStatusLabel1.Visible = false;
-            toolStripProgressBar1.Visible = true;
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+                Application.DoEvents();
                 dbhandler.TableName = tabletextBox.Text;
                 dbhandler.CreateTable();
                 ExcelHandler excelHandler = new ExcelHandler();
@@ -194,9 +195,14 @@ namespace DataLoader
                     {
                         continue;
                     }
-                    excelHandler.FileName = (string)filelistView.Items[i].Tag;
+                    string curFileName = (string)filelistView.Items[i].Tag;
+                    LogHandler logHandler = new LogHandler(Path.GetDirectoryName(curFileName) + "\\logfile.log");
+                    logHandler.WriteLogStr("start file " + curFileName);
+                    excelHandler.FileName = curFileName;
                     excelHandler.dbhandler = dbhandler;
                     excelHandler.LoadData();
+                    filelistView.Items[i].Checked = false;
+                    logHandler.WriteLogStr("end file");
                 }
             }
             catch (Exception le)
@@ -204,8 +210,11 @@ namespace DataLoader
                 MessageBox.Show(le.Message, "Ошибка загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
             MessageBox.Show("Загрузка завершена." + Environment.NewLine + "Лог загрузки находится в папке с данными.", "Результат загрузки", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            toolStripProgressBar1.Visible = false;
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Готово";
         }
