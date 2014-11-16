@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-//using Excel = Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DataLoader
 {
@@ -45,6 +45,11 @@ namespace DataLoader
             }
             return fileName;
         }
+
+        private void LoadDataFromSheet(Excel.Worksheet excelWorksheet, int SubjectId, int CL, DateTime FDate)
+        {
+
+        }
         
         public void LoadData()
         {
@@ -58,6 +63,30 @@ namespace DataLoader
             }
             int CL;
             DateTime FDate = GetDateFromFileName(out CL);
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(FileName,
+                0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+                true, false, 0, true, false, false);
+            try
+            {
+                Excel.Sheets excelSheets = excelWorkbook.Worksheets;
+                for (int i = 1; i <= excelSheets.Count; i++)
+                {
+                    Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(i);
+                    LoadDataFromSheet(excelWorksheet, SubjectId, CL, FDate);
+                }
+            }
+            catch (Exception le)
+            {
+                logHandler.WriteLogStr(le.Message);
+            }
+            finally
+            {
+                excelWorkbook.Close(0);
+                excelApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+            }
+            
         }
 
     }

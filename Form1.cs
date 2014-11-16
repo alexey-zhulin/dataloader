@@ -185,6 +185,7 @@ namespace DataLoader
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
+                LogHandler logHandler = new LogHandler(DirectoryNameTextBox.Text + "\\logfile.log");
                 Application.DoEvents();
                 dbhandler.TableName = tabletextBox.Text;
                 dbhandler.CreateTable();
@@ -196,7 +197,6 @@ namespace DataLoader
                         continue;
                     }
                     string curFileName = (string)filelistView.Items[i].Tag;
-                    LogHandler logHandler = new LogHandler(Path.GetDirectoryName(curFileName) + "\\logfile.log");
                     logHandler.WriteLogStr("start file " + curFileName);
                     excelHandler.FileName = curFileName;
                     excelHandler.dbhandler = dbhandler;
@@ -204,6 +204,7 @@ namespace DataLoader
                     filelistView.Items[i].Checked = false;
                     logHandler.WriteLogStr("end file");
                 }
+                logHandler.WriteMessage("=========================");
             }
             catch (Exception le)
             {
