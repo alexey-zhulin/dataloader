@@ -70,11 +70,14 @@ namespace DataLoader
             try
             {
                 Excel.Sheets excelSheets = excelWorkbook.Worksheets;
+                Excel.Worksheet excelWorksheet;
                 for (int i = 1; i <= excelSheets.Count; i++)
                 {
-                    Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(i);
+                    excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(i);
                     LoadDataFromSheet(excelWorksheet, SubjectId, CL, FDate);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorksheet);
                 }
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelSheets);
             }
             catch (Exception le)
             {
@@ -82,8 +85,11 @@ namespace DataLoader
             }
             finally
             {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 excelWorkbook.Close(0);
                 excelApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorkbook);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
             }
             

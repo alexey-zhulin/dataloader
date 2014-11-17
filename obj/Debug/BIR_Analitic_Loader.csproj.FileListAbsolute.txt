@@ -26,3 +26,4 @@ E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.csprojResolveAsse
 C:\Users\home1\Documents\Visual Studio 2013\Projects\dataloader.git\trunk\obj\Debug\DataLoader.Form1.resources
 C:\Users\home1\Documents\Visual Studio 2013\Projects\dataloader.git\trunk\obj\Debug\DataLoader.Properties.Resources.resources
 C:\Users\home1\Documents\Visual Studio 2013\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.csproj.ResolveComReference.cache
+E:\Projects\dataloader.git\trunk\obj\Debug\BIR_Analitic_Loader.csproj.ResolveComReference.cache
