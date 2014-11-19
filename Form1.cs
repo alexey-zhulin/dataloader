@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
+using System.Data.SqlClient;
 
 namespace DataLoader
 {
@@ -172,6 +173,7 @@ namespace DataLoader
             tabletextBox.Text = GetTableName();
             buttonExecute.Enabled = false;
             toolStripStatusLabel1.Text = "Выполните подключение";
+            toolStripProgressBar1.Visible = false;
         }
 
         private void buttonExecute_Click(object sender, EventArgs e)
@@ -182,16 +184,20 @@ namespace DataLoader
                 return;
             }
             toolStripStatusLabel1.Visible = false;
+            toolStripProgressBar1.Visible = true;
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
                 LogHandler logHandler = new LogHandler(DirectoryNameTextBox.Text + "\\logfile.log");
-                Application.DoEvents();
                 dbhandler.TableName = tabletextBox.Text;
                 dbhandler.CreateTable();
                 ExcelHandler excelHandler = new ExcelHandler();
+                toolStripProgressBar1.Value = 0;
+                toolStripProgressBar1.Maximum = filelistView.Items.Count;
                 for (int i = 0; i < filelistView.Items.Count; i++)
                 {
+                    toolStripProgressBar1.Value = toolStripProgressBar1.Value + 1;
+                    //Application.DoEvents();
                     if (!filelistView.Items[i].Checked)
                     {
                         continue;
@@ -218,6 +224,7 @@ namespace DataLoader
             MessageBox.Show("Загрузка завершена." + Environment.NewLine + "Лог загрузки находится в папке с данными.", "Результат загрузки", MessageBoxButtons.OK, MessageBoxIcon.Information);
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = "Готово";
+            toolStripProgressBar1.Visible = false;
         }
     }
 }

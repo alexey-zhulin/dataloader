@@ -10,15 +10,15 @@ namespace DataLoader
 {
     class DBRecord
     {
-        public string Param;
-        public string ParamCode;
-        public string ParamCode2;
-        public int SubjectId;
-        public DateTime FDate;
-        public int CL;
-        public double AValue1;
-        public double AValue2;
-        public double AValue3;
+        public object Param;
+        public object ParamCode;
+        public object ParamCode2;
+        public object SubjectId;
+        public object FDate;
+        public object CL;
+        public object AValue1;
+        public object AValue2;
+        public object AValue3;
     }
     
     class DBHandler : IDisposable
@@ -34,6 +34,7 @@ namespace DataLoader
         public string TableName;
         public string Schema = "dbo";
         public Exception ConnectException { get { return connectException; } }
+        public SqlConnection Connection { get { return connection; } }
         public ConnectionState connectionState { get { return connection.State; } }
         public bool TableWasCreated { get { return tableWasCreated; } }
 
@@ -112,15 +113,17 @@ namespace DataLoader
                                 "values" + Environment.NewLine +
                                 "(@Param, @ParamCode, @ParamCode2, @SubjectId, @FDate, @CL, @AValue1, @AValue2, @AValue3)";
             SqlCommand dbCommand = new SqlCommand(queryText, connection);
-            dbCommand.Parameters.Add("Param", SqlDbType.VarChar).Value = record.Param;
-            dbCommand.Parameters.Add("ParamCode", SqlDbType.VarChar).Value = record.ParamCode;
-            dbCommand.Parameters.Add("ParamCode2", SqlDbType.VarChar).Value = record.ParamCode2;
-            dbCommand.Parameters.Add("SubjectId", SqlDbType.Int).Value = record.SubjectId;
-            dbCommand.Parameters.Add("FDate", SqlDbType.DateTime).Value = record.FDate;
-            dbCommand.Parameters.Add("CL", SqlDbType.Int).Value = record.CL;
-            dbCommand.Parameters.Add("AValue1", SqlDbType.Float).Value = record.AValue1;
-            dbCommand.Parameters.Add("AValue2", SqlDbType.Float).Value = record.AValue2;
-            dbCommand.Parameters.Add("AValue3", SqlDbType.Float).Value = record.AValue3;
+            dbCommand.Parameters.Add("Param", SqlDbType.VarChar).Value = record.Param == null ? DBNull.Value : record.Param;
+            dbCommand.Parameters.Add("ParamCode", SqlDbType.VarChar).Value = record.ParamCode == null ? DBNull.Value : record.ParamCode;
+            dbCommand.Parameters.Add("ParamCode2", SqlDbType.VarChar).Value = record.ParamCode2 == null ? DBNull.Value : record.ParamCode2;
+            dbCommand.Parameters.Add("SubjectId", SqlDbType.Int).Value = record.SubjectId == null ? DBNull.Value : record.SubjectId;
+            dbCommand.Parameters.Add("FDate", SqlDbType.DateTime).Value = record.FDate == null ? DBNull.Value : record.FDate;
+            dbCommand.Parameters.Add("CL", SqlDbType.Int).Value = record.CL == null ? DBNull.Value : record.CL;
+            dbCommand.Parameters.Add("AValue1", SqlDbType.Float).Value = record.AValue1 == null ? DBNull.Value : record.AValue1;
+            dbCommand.Parameters.Add("AValue2", SqlDbType.Float).Value = record.AValue2 == null ? DBNull.Value : record.AValue2;
+            dbCommand.Parameters.Add("AValue3", SqlDbType.Float).Value = record.AValue3 == null ? DBNull.Value : record.AValue3;
+            dbCommand.ExecuteNonQuery();
+            /*
             using (SqlTransaction dbTrans = connection.BeginTransaction())
             {
                 try
@@ -134,6 +137,7 @@ namespace DataLoader
                     throw;
                 }
             }
+             * */
         }
 
         void IDisposable.Dispose()
