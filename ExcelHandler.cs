@@ -67,32 +67,21 @@ namespace DataLoader
             Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(FileName,
                 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
                 true, false, 0, true, false, false);
-            try
+            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
+            Excel.Worksheet excelWorksheet = null;
+            for (int i = 1; i <= excelSheets.Count; i++)
             {
-                Excel.Sheets excelSheets = excelWorkbook.Worksheets;
-                Excel.Worksheet excelWorksheet;
-                for (int i = 1; i <= excelSheets.Count; i++)
-                {
-                    excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(i);
-                    LoadDataFromSheet(excelWorksheet, SubjectId, CL, FDate);
-                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorksheet);
-                }
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelSheets);
+                excelWorksheet = excelSheets.get_Item(i);
+                LoadDataFromSheet(excelWorksheet, SubjectId, CL, FDate);
             }
-            catch (Exception le)
-            {
-                logHandler.WriteLogStr(le.Message);
-            }
-            finally
-            {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                excelWorkbook.Close(0);
-                excelApp.Quit();
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorkbook);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-            }
-            
+            excelWorkbook.Close(0);
+            excelApp.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorksheet);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelSheets);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorkbook);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
     }
